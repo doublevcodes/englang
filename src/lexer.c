@@ -4,55 +4,53 @@
 int array_len;
 
 char *to_char_array(char filename[]) {
-  int initial_length_of_array = 32;
-  FILE *fp;
-  char ch;
-  char *array = calloc(initial_length_of_array, 1);
-  int array_ptr = 0;
+
+    int initial_length_of_array = 32, array_ptr = 0;
+    char ch, *array = calloc(initial_length_of_array, 1);
+    FILE *fp;
   
-  fp = fopen(filename, "r");
-  if(NULL == fp){
-    perror("TO_CHAR_ARRAY: Fopen error");
-    array = NULL;
-    goto cleanup;
+    fp = fopen(filename, "r");
+    if(NULL == fp){
+        perror("TO_CHAR_ARRAY: Fopen error");
+        array = NULL;
+        goto cleanup;
   }
 
-  while(1){
-      ch = getc(fp);
-      if (EOF == ch) { break; } 
-      if(array_ptr >= initial_length_of_array){
-          initial_length_of_array += 32;
-          array = realloc(array, initial_length_of_array);
-      }
-      array[array_ptr] = ch;
-      array_ptr++;
+    while(1){
+        ch = getc(fp);
+        if (EOF == ch) { break; } 
+        if(array_ptr >= initial_length_of_array){
+            initial_length_of_array += 32;
+            array = realloc(array, initial_length_of_array);
+        }
+        array[array_ptr] = ch;
+        //printf("%c  --> POSITION %d\n", array[array_ptr], array_ptr);
+        array_ptr++;
   }
-  array_len = array_ptr;
-
+  
+    array_len = array_ptr;
+    
     cleanup:
         return array;
-}
-
-char *scan_string(char *ptr, int i){
-    int j = 0;
-    char cur = ptr[i];
-    char ret[32] = {};
-    while(!strcmp(cur, "'")) {
-        ret[j] = cur;
-        i++;
-        j++;
-    }
-    return ret;
 }
 
 void lex(char *ptr) {
     for(int i=0; i<array_len; i++){
    		char cur = ptr[i];
         if (cur == '\n') {
-            printf("\\n : NEWLINE\n");
-        } else if (strcmp(cur, "'")) {
-            char string[] = scan_string(ptr, i);
-            printf(string);
+            printf("\\n      : NEWLINE\n");
+        } else if (cur == ' ') {
+            printf("        : SPACE\n");
+        } else if (cur == 34) {
+            printf("\"       : STRING DELIMITER - DOUBLE QUOTES\n");
+        } else if (cur == 39) {
+            printf("'       : STRING DELIMITER - SINGLE QUOTES\n");
+        } else if (cur == 's' && ptr[i + 1] == 'a' && ptr[i + 2] == 'y' && ptr[i + 3] == ' ') {
+            printf("SAY     : OUTPUT STATEMENT\n");
+            i += 2;
+        }
+        else {
+            printf("%c       : UNRECOGNISED TOKEN\n", cur);
         }
 	}
 }
