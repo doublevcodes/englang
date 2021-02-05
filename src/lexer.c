@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
+#include "../include/lexing.h"
 
 int array_len;
 
@@ -30,6 +32,8 @@ char *to_char_array(char filename[]) {
   
     array_len = array_ptr;
     
+    array = realloc(array, array_len);
+
     cleanup:
         return array;
 }
@@ -37,19 +41,26 @@ char *to_char_array(char filename[]) {
 void lex(char *ptr) {
     for(int i=0; i<array_len; i++){
    		char cur = ptr[i];
-        if (cur == '\n') {
+        if (NEWLINE(cur)) {
             printf("\\n      : NEWLINE\n");
-        } else if (cur == ' ') {
+        } else if (SPACE(cur)) {
             printf("        : SPACE\n");
-        } else if (cur == 34) {
+        } else if (DOUBLEQUOTE(cur)) {
             printf("\"       : STRING DELIMITER - DOUBLE QUOTES\n");
-        } else if (cur == 39) {
+        } else if (PLUS(cur, ptr, i)) {
+            printf("PLUS    : ARITHMETIC OPERATOR - ADDITION\n");
+            i += 3;
+        } else if (MINUS(cur, ptr, i)){
+            printf("MINUS   : ARITHMETIC OPERATOR - SUBTRACTION");
+            i += 4;
+        } else if (SINGLEQUOTE(cur)) {
             printf("'       : STRING DELIMITER - SINGLE QUOTES\n");
-        } else if (cur == 's' && ptr[i + 1] == 'a' && ptr[i + 2] == 'y' && ptr[i + 3] == ' ') {
+        } else if (SAY(cur, ptr, i)) {
             printf("SAY     : OUTPUT STATEMENT\n");
             i += 2;
-        }
-        else {
+        } else if (isdigit(cur)) {
+            printf("%c       : INTEGER\n", cur);
+        } else {
             printf("%c       : UNRECOGNISED TOKEN\n", cur);
         }
 	}
