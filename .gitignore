@@ -1,0 +1,12 @@
+
+# Pycache
+__pycache__
+
+# Editing environments
+.vscode
+.replit
+.idea
+
+# Secrets
+.env
+.venv
