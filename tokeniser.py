@@ -7,7 +7,7 @@ from tokens import Subtraction
 from tokens import Multiplication
 from tokens import Division
 
-code = [char for char in "2 * 3.9"]
+code = [char for char in "2 + 2 * 2 / 2"]
 
 class Tokeniser:
 

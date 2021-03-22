@@ -29,36 +29,28 @@ class Parser:
         return self.current_tok
 
     def parse(self):
-        print("Parsing function beginning")
-        res = self.final_expression()
-        print("AST has been received")
+        res = self.expr()
         return res
 
-    def bin_number(self):
+    def factor(self):
         tok = self.current_tok
-        if tok.type_ in {"INTEGER", "FLOAT"}:
+
+        if tok.type_ in ("INTEGER", "FLOAT"):
             self.advance()
             return NumberNode(tok)
 
-    def mul_div(self):
-        return self.bin_op_scan(self.bin_number, ("MULTIPLICATION", "DIVISION"))
+    def term(self):
+        return self.binary_operation_scan(self.factor, ("MULTIPLICATION", "DIVISION"))
 
-    def final_expression(self):
-        return self.bin_op_scan(self.mul_div, ("ADDITION", "SUBTRACTION"))
+    def expr(self):
+        return self.binary_operation_scan(self.term, ("ADDITION", "SUBTRACTION"))
 
-    def bin_op_scan(self, function, operations):
-        bin_op_node = ''
-        left_tok = function()
-        print("left_tok given as:", left_tok)
-        while self.current_tok.type_ in operations:
-            print("Getting BinOp token")
-            op_tok = self.current_tok
-            print("BinOp token given as:", op_tok)
+    def binary_operation_scan(self, function, op_check):
+        left = function()
+        while self.current_tok.type_ in op_check:
+            operational_tok = self.current_tok
             self.advance()
-            right_tok = function()
-            self.advance()
-            print("right_tok given as:", right_tok)
-            bin_op_node = BinaryOperationNode(left_tok, op_tok, right_tok)
-            print("Binary operation node as:", bin_op_node)
-        return bin_op_node
-        
+            right = function()
+            left = BinaryOperationNode(left, operational_tok, right)
+
+        return left
