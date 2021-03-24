@@ -53,3 +53,23 @@ class Division(Token):
 
     def __init__(self):
         super().__init__("DIVISION", "/")
+
+class LeftParenthesis(Token):
+
+    def __init__(self):
+        super().__init__("LEFT_PARENTHESIS", "(")
+
+class RightParenthesis(Token):
+
+    def __init__(self):
+        super().__init__("RIGHT_PARENTHESIS", ")")
+
+class String(Token):
+
+    def __init__(self, str_):
+        super().__init__("STRING", str_)
+
+class EOFToken(Token):
+
+    def __init__(self):
+        super().__init__("EOFToken", "EOF")
