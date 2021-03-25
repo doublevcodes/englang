@@ -1,3 +1,7 @@
+from ..lexing.tokens import *
+from ..errors.errors import InvalidSyntaxError
+from ..nodes.nodes import *
+
 class Parser:
 	def __init__(self, tokens):
 		self.tokens = tokens
@@ -56,8 +60,6 @@ class Parser:
 
 	def expr(self):
 		return self.bin_op(self.term, (TT_PLUS, TT_MINUS))
-
-	###################################
 
 	def bin_op(self, func, ops):
 		res = ParseResult()

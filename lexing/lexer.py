@@ -1,4 +1,9 @@
+from .tokens import *
+from ..errors.errors import IllegalCharError
+from ..errors.position import Position
 
+
+DIGITS = "0123456789"
 class Lexer:
 		def __init__(self, fn, text):
 				self.fn = fn

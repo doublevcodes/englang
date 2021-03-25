@@ -1,4 +1,4 @@
-
+from ..parsing.parse_result import ParseResult
 class NumberNode:
 	def __init__(self, tok):
 		self.tok = tok
