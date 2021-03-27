@@ -1,4 +1,9 @@
+from lexing.tokens import *
+from errors.errors import IllegalCharError
+from errors.position import Position
 
+
+DIGITS = "0123456789"
 class Lexer:
 		def __init__(self, fn, text):
 				self.fn = fn
@@ -14,7 +19,7 @@ class Lexer:
 		def make_tokens(self):
 				tokens = []
 
-				while self.current_char != None:
+				while self.current_char is not None:
 						if self.current_char in ' \t':
 								self.advance()
 						elif self.current_char in DIGITS:
