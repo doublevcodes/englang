@@ -19,7 +19,7 @@ def shell(fn, text):
 
 while True:
     input_ = input('Englang: ')
-    if text == "exit()":
+    if input_ == "exit()":
         sys.exit(0)
     result, error = shell('<stdin>', input_)
     if error:
