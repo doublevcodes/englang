@@ -1,6 +1,6 @@
-from ..lexing.tokens import *
-from ..errors.errors import InvalidSyntaxError
-from ..nodes.nodes import *
+from lexing.tokens import *
+from errors.errors import InvalidSyntaxError
+from nodes.nodes import *
 
 class Parser:
 	def __init__(self, tokens):

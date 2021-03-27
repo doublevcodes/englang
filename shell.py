@@ -1,5 +1,6 @@
-from .lexing.lexer import Lexer
-from .parsing.parser import Parser
+import sys
+from lexing.lexer import Lexer
+from parsing.parser import Parser
 
 def run(fn, text):
 		# Generate tokens
@@ -15,6 +16,8 @@ def run(fn, text):
 
 while True:
 		text = input('basic > ')
+		if text == "exit()":
+			sys.exit(0)
 		result, error = run('<stdin>', text)
 		if error: print(error.as_string())
 		else: print(result)
