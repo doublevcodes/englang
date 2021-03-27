@@ -2,7 +2,6 @@ import sys
 from lexing.lexer import Lexer
 from parsing.parser import Parser
 
-
 def shell(fn, text):
     # Generate tokens
     lexer = Lexer(fn, text)

@@ -3,6 +3,7 @@ from errors.errors import InvalidSyntaxError
 from nodes.nodes import NumberNode, BinOpNode, UnaryOpNode
 
 
+
 class Parser:
     def __init__(self, tokens):
         self.tokens = tokens
