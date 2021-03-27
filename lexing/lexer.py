@@ -6,6 +6,8 @@ from lexing.tokens import TT_DIV
 from lexing.tokens import TT_LPAREN
 from lexing.tokens import TT_RPAREN
 from lexing.tokens import TT_EOF
+from lexing.tokens import TT_INT
+from lexing.tokens import TT_FLOAT
 from errors.errors import IllegalCharError
 from errors.position import Position
 
