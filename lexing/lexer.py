@@ -1,4 +1,11 @@
-from lexing.tokens import Token, TT_PLUS, TT_MINUS, TT_MUL, TT_DIV, TT_LPAREN, TT_RPAREN, TT_EOF
+from lexing.tokens import Token
+from lexing.tokens import TT_PLUS
+from lexing.tokens import TT_MINUS
+from lexing.tokens import TT_MUL
+from lexing.tokens import TT_DIV
+from lexing.tokens import TT_LPAREN
+from lexing.tokens import TT_RPAREN
+from lexing.tokens import TT_EOF
 from errors.errors import IllegalCharError
 from errors.position import Position
 
