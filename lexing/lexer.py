@@ -56,7 +56,7 @@ class Lexer:
 				dot_count = 0
 				pos_start = self.pos.copy()
 
-				while self.current_char != None and self.current_char in DIGITS + '.':
+				while self.current_char is not None and self.current_char in DIGITS + '.':
 						if self.current_char == '.':
 								if dot_count == 1: break
 								dot_count += 1
