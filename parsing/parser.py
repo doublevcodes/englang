@@ -1,4 +1,10 @@
-from lexing.tokens import TT_PLUS, TT_MINUS, TT_MUL, TT_DIV, TT_LPAREN, TT_RPAREN, TT_EOF, TT_INT, TT_FLOAT
+from lexing.tokens import TT_PLUS
+from lexing.tokens import TT_MINUS
+from lexing.tokens import TT_MUL
+from lexing.tokens import TT_DIV
+from lexing.tokens import TT_LPAREN
+from lexing.tokens import TT_RPAREN
+from lexing.tokens import TT_EOF
 from errors.errors import InvalidSyntaxError
 from nodes.nodes import NumberNode, BinOpNode, UnaryOpNode
 
