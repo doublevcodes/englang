@@ -7,6 +7,7 @@ from lexing.tokens import TT_RPAREN
 from lexing.tokens import TT_EOF
 from lexing.tokens import TT_INT
 from lexing.tokens import TT_FLOAT
+from parsing.parse_result import ParseResult
 from errors.errors import InvalidSyntaxError
 from nodes.nodes import NumberNode, BinOpNode, UnaryOpNode
 
