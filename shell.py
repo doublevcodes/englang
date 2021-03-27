@@ -3,12 +3,12 @@ from lexing.lexer import Lexer
 from parsing.parser import Parser
 
 
-def run(fn, text):
+def shell(fn, text):
     # Generate tokens
     lexer = Lexer(fn, text)
-    tokens, error = lexer.make_tokens()
-    if error:
-        return None, error
+    tokens, exception = lexer.make_tokens()
+    if exception:
+        return None, exception
 
     # Generate AST
     parser = Parser(tokens)
@@ -18,10 +18,10 @@ def run(fn, text):
 
 
 while True:
-    text = input('basic > ')
-    if text == "exit()":
+    input_ = input('Englang: ')
+    if input_ == "exit()":
         sys.exit(0)
-    result, error = run('<stdin>', text)
+    result, error = shell('<stdin>', input_)
     if error:
         print(error.as_string())
     else:

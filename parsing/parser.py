@@ -1,6 +1,14 @@
-from lexing.tokens import *
+from lexing.tokens import TT_PLUS
+from lexing.tokens import TT_MINUS
+from lexing.tokens import TT_MUL
+from lexing.tokens import TT_DIV
+from lexing.tokens import TT_LPAREN
+from lexing.tokens import TT_RPAREN
+from lexing.tokens import TT_EOF
+from lexing.tokens import TT_INT
+from lexing.tokens import TT_FLOAT
 from errors.errors import InvalidSyntaxError
-from nodes.nodes import *
+from nodes.nodes import NumberNode, BinOpNode, UnaryOpNode
 
 
 class Parser:

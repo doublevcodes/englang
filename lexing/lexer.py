@@ -1,4 +1,13 @@
-from lexing.tokens import *
+from lexing.tokens import Token
+from lexing.tokens import TT_PLUS
+from lexing.tokens import TT_MINUS
+from lexing.tokens import TT_MUL
+from lexing.tokens import TT_DIV
+from lexing.tokens import TT_LPAREN
+from lexing.tokens import TT_RPAREN
+from lexing.tokens import TT_EOF
+from lexing.tokens import TT_INT
+from lexing.tokens import TT_FLOAT
 from errors.errors import IllegalCharError
 from errors.position import Position
 
@@ -59,7 +68,7 @@ class Lexer:
         dot_count = 0
         pos_start = self.pos.copy()
 
-        while self.current_char != None and self.current_char in DIGITS + '.':
+        while self.current_char is not None and self.current_char in DIGITS + '.':
             if self.current_char == '.':
                 if dot_count == 1:
                     break
