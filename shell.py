@@ -18,10 +18,10 @@ def shell(fn, text):
 
 
 while True:
-    text = input('Englang: ')
+    input_ = input('Englang: ')
     if text == "exit()":
         sys.exit(0)
-    result, error = shell('<stdin>', text)
+    result, error = shell('<stdin>', input_)
     if error:
         print(error.as_string())
     else:
